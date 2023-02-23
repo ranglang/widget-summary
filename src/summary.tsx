@@ -14,6 +14,7 @@ import React, { RefObject, useCallback, useRef } from 'react';
 import { FieldSelect } from './form_components/field_select';
 import { getFieldFormEnum, jsonpointer, useResize } from './helper';
 import { CurrentValueWrapper, FormWrapper, SummaryWrapper } from './sc';
+import settings from '../settings.json';
 
 function isNumeric(value) {
   if (isNumber(value)) {
@@ -313,7 +314,7 @@ const WidgetSummaryBase: React.FC = () => {
     'ui:options': {
       help: {
         text: t(Strings.summary_widget_setting_help_tips),
-        url: t(Strings.summary_widget_setting_help_url),
+        url: settings.summary_widget_setting_help_url,
       },
     },
     chartStyle: {
