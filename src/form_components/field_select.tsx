@@ -1,63 +1,11 @@
 import { WidgetProps } from '@rjsf/core';
 import { applyDefaultTheme, ITheme, Select, useTheme } from '@apitable/components';
-import { FieldType, t, useField } from '@apitable/widget-sdk';
+import {FieldIconMap, t, useField} from '@apitable/widget-sdk';
 import React from 'react';
-import {
-  ColumnAttachmentFilled,
-  ColumnAutonumberFilled,
-  AccountFilled,
-  ColumnCheckboxFilled,
-  ColumnLastmodifiedtimeFilled,
-  ColumnTextFilled,
-  ColumnCreatedbyFilled,
-  ColumnCreatedtimeFilled,
-  ColumnSingleFilled,
-  ColumnCurrencyFilled,
-  ColumnEmailFilled,
-  ColumnFormulaFilled,
-  ColumnPercentFilled,
-  ColumnFigureFilled,
-  ColumnMultipleFilled,
-  ColumnCalendarFilled,
-  ColumnLinktableFilled,
-  ColumnUrlOutlined,
-  ColumnLastmodifiedbyFilled,
-  ColumnLongtextFilled,
-  ColumnPhoneFilled,
-  ColumnLookupFilled,
-  ColumnRatingFilled,
-  CascadeOutlined,
-} from '@apitable/icons';
 import styled from 'styled-components';
 import { Strings } from '../i18n';
 
 const SELECT_OPEN_SEARCH_COUNT = 7;
-const FieldIconMap = {
-  [FieldType.Text]: ColumnLongtextFilled, // FIXME: icon
-  [FieldType.Number]: ColumnFigureFilled, // FIXME: icon there is a problem with the naming.
-  [FieldType.SingleSelect]: ColumnSingleFilled,
-  [FieldType.MultiSelect]: ColumnMultipleFilled,
-  [FieldType.DateTime]: ColumnCalendarFilled, // FIXME: icon there is a problem with the naming.
-  [FieldType.Attachment]: ColumnAttachmentFilled,
-  [FieldType.MagicLink]: ColumnLinktableFilled, // ?
-  [FieldType.URL]: ColumnUrlOutlined,
-  [FieldType.Email]: ColumnEmailFilled,
-  [FieldType.Phone]: ColumnPhoneFilled,
-  [FieldType.Checkbox]: ColumnCheckboxFilled,
-  [FieldType.Rating]: ColumnRatingFilled,
-  [FieldType.Member]: AccountFilled,
-  [FieldType.MagicLookUp]: ColumnLookupFilled,
-  [FieldType.Formula]: ColumnFormulaFilled,
-  [FieldType.Currency]: ColumnCurrencyFilled,
-  [FieldType.Percent]: ColumnPercentFilled,
-  [FieldType.SingleText]: ColumnTextFilled,
-  [FieldType.AutoNumber]: ColumnAutonumberFilled,
-  [FieldType.CreatedTime]: ColumnCreatedtimeFilled,
-  [FieldType.LastModifiedTime]: ColumnLastmodifiedtimeFilled,
-  [FieldType.CreatedBy]: ColumnCreatedbyFilled,
-  [FieldType.LastModifiedBy]: ColumnLastmodifiedbyFilled,
-  [FieldType.Cascader]: CascadeOutlined
-};
 
 const transformOptions = (enumOptions: { label: string, value: any }[], theme: ITheme) => {
 
@@ -68,7 +16,7 @@ const transformOptions = (enumOptions: { label: string, value: any }[], theme: I
     };
     const field = useField(option.value);
     if (!field) return res;
-    const FieldIcon = FieldIconMap[field.type];
+    const FieldIcon = FieldIconMap[field.type] ?? null;
     return {
       ...res,
       prefixIcon: FieldIcon ? <FieldIcon color={theme.palette.text.third} /> : null,
